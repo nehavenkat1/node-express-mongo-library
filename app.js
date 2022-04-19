@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose')
+var compression = require('compression')
+var helmet = require('helmet')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -11,6 +13,8 @@ var catalogRouter = require('./routes/catalog')
 
 
 var app = express();
+
+app.use(helmet())
 
 var url = 'mongodb+srv://neha:manavshri2324@cluster0.jafaw.mongodb.net/local_library?retryWrites=true&w=majority'
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true})
@@ -29,6 +33,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(compression())
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

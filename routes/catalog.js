@@ -13,7 +13,7 @@ router.get('/book/create', book_controller.book_create_get)
 
 router.post('/book/create', book_controller.book_create_post)
 
-router.get('book/:id/delete', book_controller.book_delete_get)
+router.get('/book/:id/delete', book_controller.book_delete_get)
 
 router.post('/book/:id/delete', book_controller.book_delete_post)
 
